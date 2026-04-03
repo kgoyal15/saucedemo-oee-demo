@@ -19,8 +19,6 @@ test.describe('Products — Browse Catalog', () => {
 
   test.beforeEach(async ({ page }) => {
     await loginAs(page);
-    // Explicit goto for entry_url tracking in Playwright report
-    await page.goto('/inventory.html');
   });
 
   test('should display all 6 products on the catalog page', async ({ page }) => {
@@ -34,7 +32,21 @@ test.describe('Products — Browse Catalog', () => {
   });
 
   test('should sort products by price low to high', async ({ page }) => {
-    await page.selectOption('[data-test="product_sort_container"]', 'lohi');
+    //await page.locator('[data-test="product_sort_container"]').waitFor({ state: 'visible' });
+    //await page.waitForSelector('[data-test="product_sort_container"]:visible');
+
+    //await page.selectOption('[data-test="product_sort_container"]', 'lohi');
+
+    // Wait until the select is rendered and interactable
+    //await page.waitForSelector('[data-test="product_sort_container"]:visible');
+
+    // Select an option by value
+    //await page.locator('[data-test="product_sort_container"]').selectOption('lohi');
+await page.selectOption('.product_sort_container', { value: 'lohi' });
+
+// Optionally verify the selection
+//const selectedValue = await page.locator('[data-test="product_sort_container"]').inputValue();
+//console.log('Selected:', selectedValue); // should log 'lohi'
     const priceTexts = await page.locator('.inventory_item_price').allTextContents();
     const prices = priceTexts.map(p => parseFloat(p.replace('$', '')));
     // Verify strictly ascending order
@@ -44,7 +56,20 @@ test.describe('Products — Browse Catalog', () => {
   });
 
   test('should sort products by name Z to A', async ({ page }) => {
-    await page.selectOption('[data-test="product_sort_container"]', 'za');
+    //await page.locator('[data-test="product_sort_container"]').waitFor({ state: 'visible' });
+    //await page.waitForSelector('[data-test="product_sort_container"]:visible');
+
+// Wait until the select is rendered and interactable
+//await page.waitForSelector('[data-test="product_sort_container"]:visible');
+
+// Select an option by value
+//await page.locator('[data-test="product_sort_container"]').selectOption('za');
+await page.selectOption('.product_sort_container', { value: 'za' });
+
+// Optionally verify the selection
+//const selectedValue = await page.locator('[data-test="product_sort_container"]').inputValue();
+//console.log('Selected:', selectedValue); // should log 'lohi'
+    //await page.selectOption('[data-test="product_sort_container"]', 'za');
     const names = await page.locator('.inventory_item_name').allTextContents();
     // "Test.allTheThings() T-Shirt (Red)" starts with T, alphabetically last → first in Z-A
     expect(names[0]).toBe('Test.allTheThings() T-Shirt (Red)');

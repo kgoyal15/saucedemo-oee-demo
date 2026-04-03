@@ -26,7 +26,6 @@ test.describe('Checkout — Complete Purchase Flow', () => {
     // Set up cart with one item, then navigate to checkout
     await page.goto('/inventory.html');
     await page.click('[data-test="add-to-cart-sauce-labs-backpack"]');
-    await page.click('[data-test="shopping_cart_container"]');
     await page.goto('/cart.html');
     await page.click('[data-test="checkout"]');
   });

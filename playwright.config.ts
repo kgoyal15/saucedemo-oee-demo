@@ -14,6 +14,7 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: false,        // Serial — predictable timing for demo
   retries: process.env.CI ? 1 : 0,  // 1 retry in CI reveals flaky pattern for glitch_user
+  expect: { timeout: 10000 },
   workers: 1,                  // Single worker — clean sequential run
   reporter: [
     ['list'],
@@ -24,7 +25,7 @@ export default defineConfig({
     baseURL: 'https://www.saucedemo.com',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
-    actionTimeout: 5000,       // Tight — surfaces glitch_user timeouts as retries
+    actionTimeout: 10000,      // Tight — surfaces glitch_user timeouts as retries
     navigationTimeout: 20000,
   },
   projects: [

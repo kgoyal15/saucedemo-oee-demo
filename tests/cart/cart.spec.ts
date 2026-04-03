@@ -47,7 +47,6 @@ test.describe('Cart — Shopping Cart Management', () => {
 
   test('should display correct item in cart after adding', async ({ page }) => {
     await page.click('[data-test="add-to-cart-sauce-labs-bolt-t-shirt"]');
-    await page.click('[data-test="shopping_cart_container"]');
     await page.goto('/cart.html');
     await expect(page.locator('.cart_item')).toHaveCount(1);
     await expect(page.locator('.inventory_item_name')).toContainText('Sauce Labs Bolt T-Shirt');
@@ -55,7 +54,6 @@ test.describe('Cart — Shopping Cart Management', () => {
 
   test('should update cart badge after removing item from cart page', async ({ page }) => {
     await page.click('[data-test="add-to-cart-sauce-labs-onesie"]');
-    await page.click('[data-test="shopping_cart_container"]');
     await page.goto('/cart.html');
     await page.click('[data-test="remove-sauce-labs-onesie"]');
     await page.click('[data-test="continue-shopping"]');
