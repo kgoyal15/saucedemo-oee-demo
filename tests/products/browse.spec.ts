@@ -83,7 +83,7 @@ await page.selectOption('.product_sort_container', { value: 'za' });
     );
     const unique = new Set(srcs.filter(Boolean));
     // Each product must have its own distinct image
-    expect(unique.size).toBe(6);
+    expect(unique.size).toBe(8);
   });
 
 });
