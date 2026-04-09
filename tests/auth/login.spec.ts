@@ -22,7 +22,7 @@ test.describe('Authentication — Login', () => {
   test('should reject invalid credentials with error message', async ({ page }) => {
     await page.goto('/');
     await page.fill('[data-test="username"]', 'not_a_real_user');
-    await page.fill('[data-test="password"]', 'wrong_password');
+    await page.fill('[data-test="password"]', 'wrong_password-123');
     await page.click('[data-test="login-button"]');
     await expect(page.locator('[data-test="error"]')).toBeVisible();
     await expect(page.locator('[data-test="error"]')).toContainText('Username and password do not match');
