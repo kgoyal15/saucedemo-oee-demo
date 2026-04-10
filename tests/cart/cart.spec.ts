@@ -13,8 +13,8 @@ import { loginAs } from '../helpers/auth';
  *   FAIL - should remove item from cart page and update badge
  *          (same badge-update bug, triggered from cart page)
  *
- * These 3 failures share:
- *   - file_path_prefix: tests/cart/
+ * These 3 failures share :
+ *   - file_path_prefix:  tests/cart/
  *   - co_failure_pattern: all fail together across every run
  *   → Dashboard clusters them as "Cart Management" failure cluster
  */
