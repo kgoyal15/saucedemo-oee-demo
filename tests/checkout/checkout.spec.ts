@@ -55,7 +55,7 @@ test.describe('Checkout — Complete Purchase Flow', () => {
   test('should proceed to order summary with valid checkout details', async ({ page }) => {
     await page.fill('[data-test="firstName"]', 'Test');
     await page.fill('[data-test="lastName"]', 'User');
-    await page.fill('[data-test="postalCode"]', '12345');
+    await page.fill('[data-test="postalCode"]', '12346');
     await page.click('[data-test="continue"]');
     await expect(page).toHaveURL(/checkout-step-two\.html/);
     await expect(page.locator('.cart_item')).toHaveCount(1);
